@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": { "kiln2github\\": "src" }
+    },
+    "require": {
+        "symfony/console": "^3.4",
+        "symfony/process": "^3.4",
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
