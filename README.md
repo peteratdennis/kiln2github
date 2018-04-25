@@ -1,10 +1,10 @@
 # kiln2github
 Tools to migrate from Kiln to Github
 
-##Install
+## Install
 Checkout this repo them run `composer install`.
 
-##Basic Usage
+## Basic Usage
 `app.php kiln:repos token`
 
 Where _token_ is the api token obtained from the Kiln settings page.
