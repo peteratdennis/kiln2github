@@ -5,10 +5,22 @@ Tools to migrate from Kiln to Github
 Checkout this repo them run `composer install`.
 
 ## Basic Usage
+
+### List Kiln repos
 `app.php kiln:repos token`
 
-Where _token_ is the api token obtained from the Kiln settings page.
+ - _token_: the api token obtained from the Kiln settings page.
 
+### List Github repos
 `app.php github:repos username token`
 
-Where _username_ is the github account to run commands as and _token_ is the api token obtained from the Github settings page.
+ - _username_: the github account to run commands as
+ - _token_: the api token obtained from the Github settings page.
+
+### Create a Github repo
+`app.php github:create username token name private`
+
+ - _username_: the github account to run commands as
+ - _token_: the api token obtained from the Github settings page.
+ - _name_:the name of the new repo to be created
+ - _private_: **1** for a private repo, **0** for a public repo
