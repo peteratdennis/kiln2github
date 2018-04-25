@@ -21,14 +21,14 @@ class ReposList extends Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $output->writeln('Token: ' . $input->getArgument('token'));
-
     $client = ClientFactory::get($input->getArgument('token'), 'Project');
     $response = $client->request('GET', '');
-    $output->writeln('Response code: ' . (string)$response->getStatusCode());
-
     $projects = new Projects();
     $projects->setResponse((string)$response->getBody());
-    $output->writeln(json_encode($projects->getRepos()));
+    $repos = $projects->getRepos();
+    foreach ($repos as $repo) {
+      $ln = join(",", $repo);
+      $output->writeln($ln);
+    }
   }
 }

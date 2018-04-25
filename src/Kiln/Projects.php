@@ -26,7 +26,8 @@ Class Projects {
     foreach ($this->data as $project) {
       foreach ($project->repoGroups as $repoGroup) {
         foreach ($repoGroup->repos as $repo) {
-          $list[$repo->ixRepo] = [
+          $list[] = [
+            'ixRepo' => $repo->ixRepo,
             'ProjectName' => $repo->sProjectSlug,
             'GroupName' => $repo->sGroupName,
             'Name' => $repo->sName,
