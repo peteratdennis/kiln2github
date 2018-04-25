@@ -15,11 +15,12 @@ class RepoCreate extends Command {
       ->setName('github:create')
       ->setDescription('Creates a repo on Github.')
       ->setHelp('Pass your username, access token, new repo name, and privacy as arguments; 
-          github:create peteratdennis 123456789 new_repo 1')
+          github:create peteratdennis 123456789 new_repo 1 dennisinteractive')
       ->addArgument('username', InputArgument::REQUIRED, 'Github username.')
       ->addArgument('token', InputArgument::REQUIRED, 'The Github access token.')
       ->addArgument('name', InputArgument::REQUIRED, 'The name of the repo to create')
       ->addArgument('private', InputArgument::REQUIRED, '1 for private, 0 for public')
+      ->addArgument('org', InputArgument::REQUIRED, 'The name of the organisation ')
     ;
   }
 
@@ -31,7 +32,8 @@ class RepoCreate extends Command {
       $input->getArgument('name'),
       '',
       '',
-      $public
+      $public,
+      $input->getArgument('org')
     );
     $output->writeln(print_r($repo, true));
   }
