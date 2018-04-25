@@ -21,7 +21,7 @@ Class Projects {
     return $ixs;
   }
 
-  public function getRepos() {
+  public function getRepoSummary() {
     $list = [];
     foreach ($this->data as $project) {
       foreach ($project->repoGroups as $repoGroup) {
@@ -33,6 +33,19 @@ Class Projects {
             'Name' => $repo->sName,
             'url' => $repo->sGitUrl,
           ];
+        }
+      }
+    }
+
+    return $list;
+  }
+
+  public function getRepos() {
+    $list = [];
+    foreach ($this->data as $project) {
+      foreach ($project->repoGroups as $repoGroup) {
+        foreach ($repoGroup->repos as $repo) {
+          $list[] = $repo;
         }
       }
     }

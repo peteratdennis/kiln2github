@@ -25,7 +25,7 @@ class RepoList extends Command {
     $response = $client->request('GET', '');
     $projects = new Projects();
     $projects->setResponse((string)$response->getBody());
-    $repos = $projects->getRepos();
+    $repos = $projects->getRepoSummary();
     foreach ($repos as $repo) {
       $ln = join(",", $repo);
       $output->writeln($ln);
