@@ -37,7 +37,8 @@ class RepoCloneIds extends Command {
         $dir = '/tmp/kiln_' . $repo->ixRepo;
         $git = $gitWrapper->cloneRepository(
           $repo->sGitSshUrl,
-          $dir
+          $dir,
+          ['--mirror' => null]
         );
 
         $output->writeln('Created repo at ' . $git->getDirectory());

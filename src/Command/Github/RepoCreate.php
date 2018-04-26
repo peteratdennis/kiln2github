@@ -6,6 +6,7 @@ use Github\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class RepoCreate extends Command {
@@ -14,13 +15,25 @@ class RepoCreate extends Command {
     $this
       ->setName('github:create')
       ->setDescription('Creates a repo on Github.')
-      ->setHelp('Pass your username, access token, new repo name, and privacy as arguments; 
-          github:create peteratdennis 123456789 new_repo 1 dennisinteractive')
-      ->addArgument('username', InputArgument::REQUIRED, 'Github username.')
+      ->setHelp('Pass your access token, new repo name, and privacy as arguments; 
+          github:create 123456789 new_repo 1 --org=dennisinteractive --team=1234')
       ->addArgument('token', InputArgument::REQUIRED, 'The Github access token.')
       ->addArgument('name', InputArgument::REQUIRED, 'The name of the repo to create')
       ->addArgument('private', InputArgument::REQUIRED, '1 for private, 0 for public')
-      ->addArgument('org', InputArgument::REQUIRED, 'The name of the organisation ')
+      ->addOption(
+        'org',
+        'o',
+        InputOption::VALUE_OPTIONAL,
+        'Organisation to create the repo in',
+        ''
+      )
+      ->addOption(
+        'team',
+        't',
+        InputOption::VALUE_OPTIONAL,
+        'Team that can use the repo',
+        ''
+      )
     ;
   }
 
@@ -33,7 +46,11 @@ class RepoCreate extends Command {
       '',
       '',
       $public,
-      $input->getArgument('org')
+      $input->getOption('org'),
+      true,
+      true,
+      true,
+      $input->getOption('team')
     );
     $output->writeln(print_r($repo, true));
   }
