@@ -49,7 +49,7 @@ class RepoMirror extends Command {
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     //todo: not hard code the directory of the mirror clone.
-    $mirrored = Mirror::mirrorClone($output, $input->getArgument('source'), '/tmp/repo_clone');
+    $mirrored = Mirror::mirrorClone($output, $input->getArgument('source'), '/tmp/repo_clone_' . time());
     $urls = Repo::create($input);
     $output->writeln('Created ' . $urls['url']);
     Mirror::mirrorPush($output, $mirrored, $urls['ssh_url']);
