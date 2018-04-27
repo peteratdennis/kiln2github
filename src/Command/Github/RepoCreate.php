@@ -45,6 +45,7 @@ class RepoCreate extends Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
-    Repo::create($input, $output);
+    $urls = Repo::create($input);
+    $output->writeln('Created ' . $urls['url']);
   }
 }

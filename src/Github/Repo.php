@@ -8,8 +8,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Repo {
 
-  public static function create(InputInterface $input, OutputInterface $output) {
+  public static function create(InputInterface $input) {
     $public = ($input->getOption('private') == '1') ? false : true;
+    $org = (empty($input->getOption('org'))) ? null : $input->getOption('org');
+    $team = (empty($input->getOption('team'))) ? null : $input->getOption('team');
     $client = new Client();
     $client->authenticate($input->getArgument('token'), '', Client::AUTH_URL_TOKEN);
     $repo = $client->api('repo')->create(
@@ -17,15 +19,21 @@ class Repo {
       '',
       '',
       $public,
-      $input->getOption('org'),
+      $org,
       true,
       true,
       true,
-      $input->getOption('team')
+      $team
     );
-    $output->writeln(print_r($repo, true));
-    //todo return the uri of the new repo to push to.
-    return '';
+
+    $urls = [
+      'url' => $repo['url'],
+      'git_url' => $repo['git_url'],
+      'ssh_url' => $repo['ssh_url'],
+      'clone_url' => $repo['clone_url'],
+    ];
+
+    return $urls;
   }
 
 }
