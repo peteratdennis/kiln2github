@@ -2,7 +2,7 @@
 
 namespace kiln2github\Github;
 
-Class Repos {
+Class RepoList {
 
   protected $data;
 
