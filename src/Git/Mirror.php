@@ -1,6 +1,6 @@
 <?php
 
-namespace kiln2github\Github;
+namespace kiln2github\Git;
 
 
 use Symfony\Component\Console\Output\OutputInterface;

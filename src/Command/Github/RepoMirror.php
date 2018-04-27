@@ -3,7 +3,7 @@
 namespace kiln2github\Command\Github;
 
 
-use kiln2github\Github\Mirror;
+use kiln2github\Git\Mirror;
 use kiln2github\Github\Repo;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
